@@ -27,8 +27,8 @@ public class ActivityDaoTest {
         //When
         dao.saveActivity(activity);
         //Then
-        DbUtils.loadDriver("org.hsqldb.jdbcDriver");
-        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:bch-entities", "sa", "");
+        DbUtils.loadDriver("org.h2.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:bch-entities", "sa", "");
         QueryRunner query = new QueryRunner();
         ScalarHandler scalar = new ScalarHandler();
         int count = (Integer) query.query(conn, "Select count(*) from SOC_ACTIVITIES", scalar);
@@ -37,7 +37,7 @@ public class ActivityDaoTest {
 
 
     @Test
-    public void testFindActivityById() throws SQLException {
+    public void testFindActivityByLikerId() throws SQLException {
         //Given
         Activity activity1 = new Activity();
         activity1.addLiker("1");

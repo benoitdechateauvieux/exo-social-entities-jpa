@@ -44,9 +44,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>1.8.0.10</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.186</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -67,34 +67,34 @@
                     <contextFile>src/main/resources/tomcat/context.xml</contextFile>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.3.2</version>
-                <configuration>
-                    <changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
+            <!--<plugin>-->
+                <!--<groupId>org.liquibase</groupId>-->
+                <!--<artifactId>liquibase-maven-plugin</artifactId>-->
+                <!--<version>3.3.2</version>-->
+                <!--<configuration>-->
+                    <!--<changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>-->
                     <!--<driver>com.mysql.jdbc.Driver</driver>-->
                     <!--<url>jdbc:mysql://localhost:3306/bchentities</url>-->
                     <!--<username>root</username>-->
                     <!--<password></password>-->
-                    <referenceUrl>hibernate:ejb3:bch-entities</referenceUrl>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.liquibase.ext</groupId>
-                        <artifactId>liquibase-hibernate4</artifactId>
-                        <version>3.5</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+                    <!--<referenceUrl>hibernate:ejb3:bch-entities</referenceUrl>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>process-resources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>update</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.liquibase.ext</groupId>-->
+                        <!--<artifactId>liquibase-hibernate4</artifactId>-->
+                        <!--<version>3.5</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
