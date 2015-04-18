@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-1">
+        <createTable tableName="soc_activities">
+            <column name="activity_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_id" type="VARCHAR(36)"/>
+            <column name="body" type="VARCHAR(2000)"/>
+            <column name="body_id" type="VARCHAR(36)"/>
+            <column name="external_id" type="VARCHAR(36)"/>
+            <column name="hidden" type="BIT(1)"/>
+            <column name="last_updated" type="datetime"/>
+            <column name="locked" type="BIT(1)"/>
+            <column name="owner_id" type="VARCHAR(36)"/>
+            <column name="perma_link" type="VARCHAR(255)"/>
+            <column name="posted" type="datetime"/>
+            <column name="poster_id" type="VARCHAR(36)"/>
+            <column name="priority" type="FLOAT(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(2000)"/>
+            <column name="title_id" type="VARCHAR(36)"/>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-2">
+        <createTable tableName="soc_activity_comments">
+            <column name="activity_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-3">
+        <createTable tableName="soc_activity_likers">
+            <column name="activity_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liker_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-4">
+        <createTable tableName="soc_activity_template_params">
+            <column name="activity_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template_param_value" type="VARCHAR(255)"/>
+            <column name="template_param_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-5">
+        <createTable tableName="soc_comment_likers">
+            <column name="comment_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liker_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-6">
+        <createTable tableName="soc_comment_template_params">
+            <column name="comment_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template_param_value" type="VARCHAR(255)"/>
+            <column name="template_param_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-7">
+        <createTable tableName="soc_comments">
+            <column autoIncrement="true" name="comment_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="app_id" type="VARCHAR(36)"/>
+            <column name="body" type="VARCHAR(2000)"/>
+            <column name="body_id" type="VARCHAR(36)"/>
+            <column name="external_id" type="VARCHAR(36)"/>
+            <column name="hidden" type="BIT(1)"/>
+            <column name="last_updated" type="datetime"/>
+            <column name="locked" type="BIT(1)"/>
+            <column name="owner_id" type="VARCHAR(36)"/>
+            <column name="perma_link" type="VARCHAR(255)"/>
+            <column name="posted" type="datetime"/>
+            <column name="poster_id" type="VARCHAR(36)"/>
+            <column name="priority" type="FLOAT(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(2000)"/>
+            <column name="title_id" type="VARCHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-8">
+        <createTable tableName="soc_stream_items">
+            <column autoIncrement="true" name="stream_item_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="viewer_id" type="VARCHAR(36)"/>
+            <column name="viewer_stream_type" type="INT"/>
+            <column name="activity_id" type="VARCHAR(36)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-9">
+        <addPrimaryKey columnNames="activity_id" constraintName="PRIMARY" tableName="soc_activities"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-10">
+        <addPrimaryKey columnNames="activity_id, template_param_key" constraintName="PRIMARY" tableName="soc_activity_template_params"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-11">
+        <addPrimaryKey columnNames="comment_id, template_param_key" constraintName="PRIMARY" tableName="soc_comment_template_params"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-12">
+        <addUniqueConstraint columnNames="comment_id" constraintName="UK_ni00nasf2lnbce4gfl7f0xf7p" deferrable="false" disabled="false" initiallyDeferred="false" tableName="soc_activity_comments"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-13">
+        <addForeignKeyConstraint baseColumnNames="comment_id" baseTableName="soc_comment_likers" constraintName="FK_4v5qmveija84fgxce0smk2yb1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="comment_id" referencedTableName="soc_comments"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-14">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="soc_stream_items" constraintName="FK_8a3lmobxmqws07hste7x8n4nx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="activity_id" referencedTableName="soc_activities"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-15">
+        <addForeignKeyConstraint baseColumnNames="comment_id" baseTableName="soc_comment_template_params" constraintName="FK_9y7dhdbsle122dksn9bxw9yim" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="comment_id" referencedTableName="soc_comments"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-16">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="soc_activity_comments" constraintName="FK_f58kj7fgaehrbydfmow5hwl1n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="activity_id" referencedTableName="soc_activities"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-17">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="soc_activity_likers" constraintName="FK_i7fid34wy8dgkye5dahvctn7j" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="activity_id" referencedTableName="soc_activities"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-18">
+        <addForeignKeyConstraint baseColumnNames="comment_id" baseTableName="soc_activity_comments" constraintName="FK_ni00nasf2lnbce4gfl7f0xf7p" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="comment_id" referencedTableName="soc_comments"/>
+    </changeSet>
+    <changeSet author="bdechateauvieux@exoplatform.org" id="1428548390698-19">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="soc_activity_template_params" constraintName="FK_o0t65prwb156ilqjdi6lcdm5k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="activity_id" referencedTableName="soc_activities"/>
+    </changeSet>
+</databaseChangeLog>

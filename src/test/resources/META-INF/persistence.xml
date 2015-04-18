@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="bch-entities" transaction-type="RESOURCE_LOCAL">
+
+        <class>org.exoplatform.social.domain.Activity</class>
+        <class>org.exoplatform.social.domain.BaseActivity</class>
+        <class>org.exoplatform.social.domain.Comment</class>
+        <class>org.exoplatform.social.domain.StreamItem</class>
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:bch-entities"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value=""/>
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+        </properties>
+    </persistence-unit>
+</persistence>
