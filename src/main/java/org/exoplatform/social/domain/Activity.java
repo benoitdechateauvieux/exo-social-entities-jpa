@@ -12,8 +12,12 @@ import java.util.Set;
 @Entity
 @Table(name = "SOC_ACTIVITIES")
 //@EntityListeners({Activity.ActivityEntityListener.class})
-@NamedQuery(name = "getActivitiesByLikerId",
-            query = "select a from Activity a join a.likerIds likers where likers = :likerId")
+@NamedQueries({
+        @NamedQuery(name = "Activity.getActivitiesByLikerId",
+                query = "select a from Activity a join a.likerIds likers where likers = :likerId"),
+        @NamedQuery(name = "Activity.getActivityStream",
+        query = "select DISTINCT s.activity from StreamItem s where s.ownerId = :ownerId")
+})
 public class Activity extends BaseActivity {
     @Id
     @GeneratedValue
