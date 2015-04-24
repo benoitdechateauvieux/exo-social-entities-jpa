@@ -15,6 +15,10 @@ public class Comment extends BaseActivity{
     @Column(name="COMMENT_ID")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name="ACTIVITY_ID")
+    private Activity activity;
+
     @ElementCollection
     @CollectionTable(
             name = "SOC_COMMENT_LIKERS",

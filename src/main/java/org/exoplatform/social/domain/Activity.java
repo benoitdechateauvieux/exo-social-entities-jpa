@@ -46,12 +46,7 @@ public class Activity extends BaseActivity {
     @Column(name="TEMPLATE_PARAM_VALUE")
     private Map<String, String> templateParams;
 
-    @OneToMany
-    @JoinTable(
-            name = "SOC_ACTIVITY_COMMENTS",
-            joinColumns = @JoinColumn(name = "ACTIVITY_ID"),
-            inverseJoinColumns = @JoinColumn(name = "COMMENT_ID")
-    )
+    @OneToMany(mappedBy = "activity")
     private List<Comment> comments;
 
     public void addLiker(String likerId) {
